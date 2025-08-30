@@ -1,24 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discord Bot Admin Panel</title>
-    <meta name="description" content="Modern Discord bot administration interface with dark anime theme" />
-    <meta name="author" content="Discord Bot Admin" />
+    <meta name="description" content="Modern Discord bot administration interface with dark anime theme">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <div id="app" class="min-h-screen flex w-full bg-background">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <div class="flex items-center space-x-3">
+                    <div class="sidebar-logo">
+                        <i data-lucide="bot"></i>
+                    </div>
+                    <div class="sidebar-title">
+                        <h2>Discord Bot</h2>
+                        <p>Admin Panel</p>
+                    </div>
+                </div>
+            </div>
 
-    <meta property="og:title" content="Discord Bot Admin Panel" />
-    <meta property="og:description" content="Modern Discord bot administration interface with dark anime theme" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+            <nav class="sidebar-nav">
+                <div class="nav-group">
+                    <h3 class="nav-group-label">Navigation</h3>
+                    <ul class="nav-menu">
+                        <li><a href="#dashboard" class="nav-link active" data-page="dashboard">
+                            <i data-lucide="layout-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a></li>
+                        <li><a href="#videos" class="nav-link" data-page="videos">
+                            <i data-lucide="video"></i>
+                            <span>Videos</span>
+                        </a></li>
+                        <li><a href="#users" class="nav-link" data-page="users">
+                            <i data-lucide="users"></i>
+                            <span>Users</span>
+                        </a></li>
+                        <li><a href="#commands" class="nav-link" data-page="commands">
+                            <i data-lucide="terminal"></i>
+                            <span>Bot Commands</span>
+                        </a></li>
+                        <li><a href="#messenger" class="nav-link" data-page="messenger">
+                            <i data-lucide="message-square"></i>
+                            <span>Messenger</span>
+                        </a></li>
+                    </ul>
+                </div>
+            </nav>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+            <div class="sidebar-footer">
+                <div class="flex items-center space-x-3">
+                    <div class="avatar">AD</div>
+                    <div class="user-info">
+                        <p class="user-name">Admin</p>
+                        <p class="user-email">admin@bot.com</p>
+                    </div>
+                </div>
+                <div class="footer-actions">
+                    <button class="btn-ghost">
+                        <i data-lucide="settings"></i>
+                    </button>
+                    <button class="btn-ghost">
+                        <i data-lucide="log-out"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <button id="sidebar-toggle" class="sidebar-toggle">
+                            <i data-lucide="menu"></i>
+                        </button>
+                        <div class="header-divider"></div>
+                        <h1 class="header-title">Bot Management</h1>
+                    </div>
+                    <div class="header-right">
+                        <div class="status-indicator">
+                            <div class="status-dot"></div>
+                            <span>Bot Online</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main id="page-content" class="page-content">
+                <!-- Dashboard Page -->
+                <div id="dashboard-page" class="page active">
+                    <div class="page-header">
+                        <h1 class="page-title">Dashboard</h1>
+                        <p class="page-description">Monitor your Discord bot's performance and activity</p>
+                        <div class="status-badge">
+                            <div class="status-dot"></div>
+                            Online
+                        </div>
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-label">Total Users</span>
+                                <i data-lucide="users" class="stat-icon"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value">1,234</div>
+                                <div class="stat-change">
+                                    <span class="change-badge positive">+12%</span>
+                                    <span class="stat-desc">Active bot users</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-label">Videos Managed</span>
+                                <i data-lucide="video" class="stat-icon"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value">567</div>
+                                <div class="stat-change">
+                                    <span class="change-badge positive">+8%</span>
+                                    <span class="stat-desc">Total uploaded videos</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-label">Messages Today</span>
+                                <i data-lucide="message-square" class="stat-icon"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value">8,456</div>
+                                <div class="stat-change">
+                                    <span class="change-badge positive">+23%</span>
+                                    <span class="stat-desc">Bot interactions</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-label">Uptime</span>
+                                <i data-lucide="activity" class="stat-icon"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value">99.9%</div>
+                                <div class="stat-change">
+                                    <span class="change-badge neutral">Stable</span>
+                                    <span class="stat-desc">Server availability</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bot Status & Activity -->
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i data-lucide="bot" class="card-icon"></i>
+                                    <span>Bot Status</span>
+                                </div>
+                                <p class="card-description">Current bot information and health</p>
+                            </div>
+                            <div class="card-content">
+                                <div class="info-item">
+                                    <span class="info-label">Bot Version</span>
+                                    <span class="info-value">v2.1.0</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Last Restart</span>
+                                    <span class="info-value">2 hours ago</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Memory Usage</span>
+                                    <div class="progress-container">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 45%"></div>
+                                        </div>
+                                        <span class="info-value">45%</span>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">CPU Usage</span>
+                                    <div class="progress-container">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 23%"></div>
+                                        </div>
+                                        <span class="info-value">23%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <i data-lucide="trending-up" class="card-icon"></i>
+                                    <span>Recent Activity</span>
+                                </div>
+                                <p class="card-description">Latest bot interactions and events</p>
+                            </div>
+                            <div class="card-content">
+                                <div class="activity-list">
+                                    <div class="activity-item">
+                                        <div class="activity-dot green"></div>
+                                        <div class="activity-content">
+                                            <p class="activity-action">User joined server</p>
+                                            <p class="activity-time">2 minutes ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-dot blue"></div>
+                                        <div class="activity-content">
+                                            <p class="activity-action">Video uploaded</p>
+                                            <p class="activity-time">5 minutes ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-dot purple"></div>
+                                        <div class="activity-content">
+                                            <p class="activity-action">Command executed</p>
+                                            <p class="activity-time">8 minutes ago</p>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-dot orange"></div>
+                                        <div class="activity-content">
+                                            <p class="activity-action">Message sent</p>
+                                            <p class="activity-time">12 minutes ago</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Videos Page -->
+                <div id="videos-page" class="page">
+                    <div class="page-header">
+                        <div class="page-header-content">
+                            <div>
+                                <h1 class="page-title">Video Management</h1>
+                                <p class="page-description">Manage uploaded videos and content from your Discord bot</p>
+                            </div>
+                            <button class="btn-primary">
+                                <i data-lucide="upload"></i>
+                                Upload Video
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Search -->
+                    <div class="search-card">
+                        <div class="search-container">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" class="search-input" placeholder="Search videos by title or uploader..." id="video-search">
+                        </div>
+                        <div class="search-info">
+                            <span class="count-badge">4 videos</span>
+                        </div>
+                    </div>
+
+                    <!-- Videos Grid -->
+                    <div class="videos-grid" id="videos-grid">
+                        <!-- Video cards will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Users Page -->
+                <div id="users-page" class="page">
+                    <div class="page-header">
+                        <div class="page-header-content">
+                            <div>
+                                <h1 class="page-title">User Management</h1>
+                                <p class="page-description">Manage Discord server members and their permissions</p>
+                            </div>
+                            <button class="btn-primary">
+                                <i data-lucide="user-plus"></i>
+                                Add User
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Search -->
+                    <div class="search-card">
+                        <div class="search-container">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" class="search-input" placeholder="Search users by name or username..." id="user-search">
+                        </div>
+                        <div class="search-info">
+                            <span class="count-badge">6 users</span>
+                        </div>
+                    </div>
+
+                    <!-- Users Grid -->
+                    <div class="users-grid" id="users-grid">
+                        <!-- User cards will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Commands Page -->
+                <div id="commands-page" class="page">
+                    <div class="page-header">
+                        <div class="page-header-content">
+                            <div>
+                                <h1 class="page-title">Bot Commands</h1>
+                                <p class="page-description">Manage and configure Discord bot commands</p>
+                            </div>
+                            <button class="btn-primary">
+                                <i data-lucide="plus"></i>
+                                Add Command
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Search -->
+                    <div class="search-card">
+                        <div class="search-container">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" class="search-input" placeholder="Search commands..." id="command-search">
+                        </div>
+                        <div class="search-info">
+                            <span class="count-badge">8 commands</span>
+                        </div>
+                    </div>
+
+                    <!-- Commands List -->
+                    <div class="commands-list" id="commands-list">
+                        <!-- Command cards will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Messenger Page -->
+                <div id="messenger-page" class="page">
+                    <div class="page-header">
+                        <h1 class="page-title">Direct Messenger</h1>
+                        <p class="page-description">Communicate directly with Discord users through the bot</p>
+                    </div>
+
+                    <div class="messenger-container">
+                        <!-- User List -->
+                        <div class="user-list-panel">
+                            <div class="user-list-header">
+                                <h3>Active Conversations</h3>
+                                <button class="btn-ghost">
+                                    <i data-lucide="plus"></i>
+                                </button>
+                            </div>
+                            <div class="user-list" id="conversation-list">
+                                <!-- Conversation items will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Chat Area -->
+                        <div class="chat-area">
+                            <div class="chat-header">
+                                <div class="chat-user-info">
+                                    <div class="avatar">U1</div>
+                                    <div>
+                                        <h4>User123</h4>
+                                        <p>Online</p>
+                                    </div>
+                                </div>
+                                <div class="chat-actions">
+                                    <button class="btn-ghost">
+                                        <i data-lucide="more-horizontal"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="chat-messages" id="chat-messages">
+                                <!-- Messages will be populated by JavaScript -->
+                            </div>
+
+                            <div class="chat-input-container">
+                                <div class="chat-input-wrapper">
+                                    <input type="text" class="chat-input" placeholder="Type a message..." id="message-input">
+                                    <button class="btn-ghost">
+                                        <i data-lucide="paperclip"></i>
+                                    </button>
+                                    <button class="btn-primary send-btn">
+                                        <i data-lucide="send"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
